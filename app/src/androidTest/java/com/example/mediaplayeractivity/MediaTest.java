@@ -29,15 +29,17 @@ public class MediaTest {
     public void yourSetUPFragment() {
         /* We defined this method to do anything we want to do before the test, in this example we want to test the views inside PlayerFragment
         /So, we should load that fragment first in the MainActivity (represented by activityTestRule above)*/
-        //TODO 6: (a) Define an object of PlayerFragment
-        //TODO 6: (b) Create a bundle and add the data you want to send to that fragment (in this case the int position of the phrase and the phrase itself), let's use "How are you" phrase for this example
+        //--TODO 6: (a) Define an object of PlayerFragment
+        PlayerFragment playerFragment = new PlayerFragment();
+        //--TODO 6: (b) Create a bundle and add the data you want to send to that fragment (in this case the int position of the phrase and the phrase itself), let's use "How are you" phrase for this example
         //Note the keys of the values you'll add to the Bundle should match the keys that PlayerFragment uses to get values from that Bundle
-
-        //TODO 7: Send the Bundle you created and filled above to PlayerFragment through setArguments
-
-
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", 0);
+        bundle.putString("phrase", "How are you");
+        //--TODO 7: Send the Bundle you created and filled above to PlayerFragment through setArguments
         /* Now we simply call getActivity then getSupportFragmentManager to add PlayerFragment as below. Note how we use replace not add,
         because if add will be used PlayerFragment will show above the Fragment that gets loaded by default in the activity (MainFragment), you can try to use add to understand more.*/
+        playerFragment.setArguments(bundle);
         activityTestRule.getActivity()
                 .getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, playerFragment).commit();
     }
@@ -46,9 +48,13 @@ public class MediaTest {
     @Test
     public void buttonShouldUpdateText() {
         //TODO 8 (a): Check that the view with the id phrase exists in the hierarchy and is displayed on the screen:
+        onView(withId(R.id.phrase)).check(matches(isDisplayed()));
 
         //TODO 8 (b): Perform a click action on any of the views in PlayerFragment (for example the view with the id eng) and observe the test result
         // You can also add more lines to perform click actions on the remaining views (with ids fr and ar) and observe the test result
+        onView(withId(R.id.eng)).perform(click());
+/*        onView(withId(R.id.fr)).perform(click());
+        onView(withId(R.id.ar)).perform(click());*/
 
     }
 }

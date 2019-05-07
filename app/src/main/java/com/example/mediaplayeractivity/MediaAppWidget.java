@@ -14,14 +14,14 @@ public class MediaAppWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-        //TODO 1: Create an Intent to launch MainActivity then add it to a PendingIntent
+        //--TODO 1: Create an Intent to launch MainActivity then add it to a PendingIntent
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //--TODO 2 : Get the layout of the App Widget and inflate it into a RemoteViews object
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.media_app_widget);
 
-
-        //TODO 2 : Get the layout of the App Widget and inflate it into a RemoteViews object
-
-
-        //TODO 3 : Call setOnClickPendingIntent on the RemoteViews object and provide the view that will be clicked and the pending intent to be launched
-
+        //--TODO 3 : Call setOnClickPendingIntent on the RemoteViews object and provide the view that will be clicked and the pending intent to be launched
+        views.setOnClickPendingIntent(appWidgetId, pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

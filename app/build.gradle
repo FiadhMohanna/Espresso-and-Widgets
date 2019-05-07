@@ -8,7 +8,8 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        //TODO 5: Set the instrumentation runner (hint: check this resource: https://developer.android.com/training/testing/espresso/setup)
+        //--TODO 5: Set the instrumentation runner (hint: check this resource: https://developer.android.com/training/testing/espresso/setup)
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
@@ -33,7 +34,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
 
-    // TODO 4: Add Espresso Dependencies (hint: check this resource: https://developer.android.com/training/testing/espresso/setup)
+    //--TODO 4: Add Espresso Dependencies (hint: check this resource: https://developer.android.com/training/testing/espresso/setup)
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
 
 
 }
